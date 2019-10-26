@@ -1,15 +1,16 @@
 <template>
   <div id="app">
-    <home></home>
+    <router-view></router-view>
+    <main-tar-bar></main-tar-bar>
   </div>
 </template>
 
 <script>
-  import Home from 'components/contents/home/Home'
+  import MainTarBar from 'components/contents/maintarbar/MainTarBar'
   export default {
     name: 'app',
     components: {
-        Home
+        MainTarBar
     }
   }
 </script>

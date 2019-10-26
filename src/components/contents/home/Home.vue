@@ -1,12 +1,16 @@
 <template>
     <div>
-      This is Home page
+      <MainTarBar></MainTarBar>
     </div>
 </template>
 
 <script>
+  import MainTarBar from 'components/contents/maintarbar/MainTarBar'
   export default {
-      name: "Home"
+      name: "Home",
+      components: {
+          MainTarBar
+      }
   }
 </script>
 
