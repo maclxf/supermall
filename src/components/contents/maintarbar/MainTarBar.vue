@@ -1,7 +1,7 @@
 <template>
   <tar-bar>
     <tar-bar-item path="/home" >
-      <!--dom 中使用路径需要用~来识别配置的别名-->
+      <!--dom 中使用路径需要用 ~ 来识别配置的别名-->
       <img slot="item-icon" src="~assets/images/tabbar/home.svg" alt="">
       <img slot="item-icon-active" src="~assets/images/tabbar/home_active.svg" alt="">
       <div slot="item-text">首页</div>

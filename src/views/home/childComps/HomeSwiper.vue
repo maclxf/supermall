@@ -1,5 +1,5 @@
 <template>
-  <swiper>
+  <swiper class="home-swiper">
     <swiper-item v-for="item in cbanners" :key="item.background">
       <a :href="item.link">
         <img :src="item.background" alt="">
@@ -27,5 +27,6 @@
 </script>
 
 <style scoped>
+
 
 </style>
