@@ -21,10 +21,29 @@
                 }
             }
         },
+        //接收父组件来的值
+        props:{
+            probeType:{
+                type:Number,
+                default:0
+            }
+        },
         mounted() {
             this.scroller = new BScroll(this.$refs.wrapper, {
-                probeType:3,
+                probeType:this.probeType,
             })
+
+            this.scroller.on('scroll', (postion) => {
+                //console.log(postion);
+                this.$emit('scroll', postion)
+            })
+
+        },
+        methods:{
+            scrollTo(x, y, time=300) {
+                this.scroller.scrollTo(0, 0, time)
+            },
+
         }
     }
 </script>

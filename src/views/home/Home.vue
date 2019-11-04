@@ -3,14 +3,16 @@
     <nav-bar class="home-nav-bar">
       <div slot="center">购物街</div>
     </nav-bar>
-
-    <scroller class="home-scroller">
+<!-- ref 是用于定位元素和取到组件的内容，:是绑定属性 @是绑定方法-->
+    <scroller class="home-scroller" ref="scroller" :probe-type="3" @scroll="getPostion">
       <home-swiper :cbanners="banners"/>
       <home-recommend :cproducts="products"/>
       <home-feature-view/>
       <tab-control class="home-tab-control" :ctitles="['流行', '新款', '精选']" @tabClick="pTabClick"/>
       <goods-list :cgoods="showGoods"/>
     </scroller>
+
+    <back-top @click.native="backTopClick" v-show="isShowBackTop" />
   </div>
 </template>
 
@@ -22,10 +24,9 @@
     import TabControl from "components/contents/tabControl/TabControl";
     import GoodsList from "components/contents/good/GoodsList";
     import Scroller from "components/common/scroller/Scroller";
+    import BackTop from "components/contents/backTop/BackTop";
 
     import {getHomeMultiData, getGoodsData} from "network/home";
-
-
 
     export default {
         name: "Home",
@@ -36,7 +37,8 @@
             HomeFeatureView,
             TabControl,
             GoodsList,
-            Scroller
+            Scroller,
+            BackTop
         },
         data() {
           return {
@@ -48,6 +50,7 @@
               sell:{page:0, list:[]}
             },
             currentType:'pop',
+            isShowBackTop: false
           }
         },
         computed: {
@@ -88,6 +91,13 @@
                     this.goods[type].list.push(...res.goods)
                     this.goods[type].page = res.page
                 })
+            },
+            backTopClick() {
+                // 通过$refs拿到组件中的对象
+                this.$refs.scroller.scrollTo(0, 0, 500)
+            },
+            getPostion(postion) {
+                this.isShowBackTop = -postion.y > 300
             }
         }
     }
@@ -128,5 +138,7 @@
     right: 0;
     left: 0;
   }
+
+
 
 </style>
